@@ -9,6 +9,7 @@
 
 namespace CapaDatos
 {
+    using Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -19,7 +20,13 @@ namespace CapaDatos
             : base("name=AlojamientosDavidMartinEntities")
         {
         }
-    
+
+        public AlojamientosDavidMartinEntities(string cadConexion)
+            : base(cadConexion)
+        {
+        }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

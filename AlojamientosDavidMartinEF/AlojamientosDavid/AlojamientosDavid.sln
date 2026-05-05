@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\Capa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{79DDC12D-2472-4095-9FBC-98093EF83F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuscarServidor", "BuscarServidor\BuscarServidor.csproj", "{F32EA2A6-0B15-4994-B261-AA1C4C879770}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{79DDC12D-2472-4095-9FBC-98093EF83F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79DDC12D-2472-4095-9FBC-98093EF83F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79DDC12D-2472-4095-9FBC-98093EF83F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32EA2A6-0B15-4994-B261-AA1C4C879770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32EA2A6-0B15-4994-B261-AA1C4C879770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32EA2A6-0B15-4994-B261-AA1C4C879770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32EA2A6-0B15-4994-B261-AA1C4C879770}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
