@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlojamientosDavidMartinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIAS">
+          <Key>
+            <PropertyRef Name="IDCATEGORIA" />
+          </Key>
+          <Property Name="IDCATEGORIA" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_CATEGORIA" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNI_NIE" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="APELLIDOS" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ESTABLECIMIENTOS">
+          <Key>
+            <PropertyRef Name="IDESTABLECIMIENTO" />
+          </Key>
+          <Property Name="IDESTABLECIMIENTO" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_COMERCIAL" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDCATEGORIA" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAGOS">
+          <Key>
+            <PropertyRef Name="IDPAGO" />
+          </Key>
+          <Property Name="IDPAGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDRESERVA" Type="int" Nullable="false" />
+          <Property Name="IMPORTE" Type="smallmoney" Nullable="false" />
+          <Property Name="FECHA_PAGO" Type="datetime" />
+          <Property Name="METODO_PAGO" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESERVAS">
+          <Key>
+            <PropertyRef Name="IDRESERVA" />
+          </Key>
+          <Property Name="IDRESERVA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDESTABLECIMIENTO" Type="smallint" Nullable="false" />
+          <Property Name="NUMERO_UNIDAD" Type="smallint" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_ENTRADA" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_SALIDA" Type="datetime" Nullable="false" />
+          <Property Name="CANTIDAD_PERSONAS" Type="smallint" Nullable="false" />
+          <Property Name="ESTADO_RESERVA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="FIANZA" Type="smallmoney" />
+          <Property Name="IMPORTE_ESTIMADO" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UNIDADES_ALOJAMIENTO">
+          <Key>
+            <PropertyRef Name="IDESTABLECIMIENTO" />
+            <PropertyRef Name="NUMERO" />
+          </Key>
+          <Property Name="IDESTABLECIMIENTO" Type="smallint" Nullable="false" />
+          <Property Name="NUMERO" Type="smallint" Nullable="false" />
+          <Property Name="NOMBRE_UNIDAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="CAPACIDAD_MAX" Type="smallint" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PRECIO_NOCHE" Type="smallmoney" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ESTABLEC_CATEG">
+          <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="1" />
+          <End Role="ESTABLECIMIENTOS" Type="Self.ESTABLECIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Principal>
+            <Dependent Role="ESTABLECIMIENTOS">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAGO_RESERVA">
+          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="1" />
+          <End Role="PAGOS" Type="Self.PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESERVAS">
+              <PropertyRef Name="IDRESERVA" />
+            </Principal>
+            <Dependent Role="PAGOS">
+              <PropertyRef Name="IDRESERVA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESERVA_CLIENTE">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="RESERVAS">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESERVA_UNIDAD">
+          <End Role="UNIDADES_ALOJAMIENTO" Type="Self.UNIDADES_ALOJAMIENTO" Multiplicity="1" />
+          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIDADES_ALOJAMIENTO">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+              <PropertyRef Name="NUMERO" />
+            </Principal>
+            <Dependent Role="RESERVAS">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+              <PropertyRef Name="NUMERO_UNIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNIDAD_ESTABLEC">
+          <End Role="ESTABLECIMIENTOS" Type="Self.ESTABLECIMIENTOS" Multiplicity="1" />
+          <End Role="UNIDADES_ALOJAMIENTO" Type="Self.UNIDADES_ALOJAMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTABLECIMIENTOS">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+            </Principal>
+            <Dependent Role="UNIDADES_ALOJAMIENTO">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlojamientosDavidMartinModelStoreContainer">
+          <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTABLECIMIENTOS" EntityType="Self.ESTABLECIMIENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAGOS" EntityType="Self.PAGOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UNIDADES_ALOJAMIENTO" EntityType="Self.UNIDADES_ALOJAMIENTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ESTABLEC_CATEG" Association="Self.FK_ESTABLEC_CATEG">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="ESTABLECIMIENTOS" EntitySet="ESTABLECIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAGO_RESERVA" Association="Self.FK_PAGO_RESERVA">
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+            <End Role="PAGOS" EntitySet="PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESERVA_CLIENTE" Association="Self.FK_RESERVA_CLIENTE">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESERVA_UNIDAD" Association="Self.FK_RESERVA_UNIDAD">
+            <End Role="UNIDADES_ALOJAMIENTO" EntitySet="UNIDADES_ALOJAMIENTO" />
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNIDAD_ESTABLEC" Association="Self.FK_UNIDAD_ESTABLEC">
+            <End Role="ESTABLECIMIENTOS" EntitySet="ESTABLECIMIENTOS" />
+            <End Role="UNIDADES_ALOJAMIENTO" EntitySet="UNIDADES_ALOJAMIENTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlojamientosDavidMartinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="IDCATEGORIA" />
+          </Key>
+          <Property Name="IDCATEGORIA" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CATEGORIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ESTABLECIMIENTOS" Relationship="Self.FK_ESTABLEC_CATEG" FromRole="CATEGORIAS" ToRole="ESTABLECIMIENTOS" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI_NIE" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVA_CLIENTE" FromRole="CLIENTES" ToRole="RESERVAS" />
+        </EntityType>
+        <EntityType Name="ESTABLECIMIENTO">
+          <Key>
+            <PropertyRef Name="IDESTABLECIMIENTO" />
+          </Key>
+          <Property Name="IDESTABLECIMIENTO" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_COMERCIAL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDCATEGORIA" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_ESTABLEC_CATEG" FromRole="ESTABLECIMIENTOS" ToRole="CATEGORIAS" />
+          <NavigationProperty Name="UNIDADES_ALOJAMIENTO" Relationship="Self.FK_UNIDAD_ESTABLEC" FromRole="ESTABLECIMIENTOS" ToRole="UNIDADES_ALOJAMIENTO" />
+        </EntityType>
+        <EntityType Name="PAGO">
+          <Key>
+            <PropertyRef Name="IDPAGO" />
+          </Key>
+          <Property Name="IDPAGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDRESERVA" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTE" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="FECHA_PAGO" Type="DateTime" Precision="3" />
+          <Property Name="METODO_PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RESERVA" Relationship="Self.FK_PAGO_RESERVA" FromRole="PAGOS" ToRole="RESERVAS" />
+        </EntityType>
+        <EntityType Name="RESERVA">
+          <Key>
+            <PropertyRef Name="IDRESERVA" />
+          </Key>
+          <Property Name="IDRESERVA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDESTABLECIMIENTO" Type="Int16" Nullable="false" />
+          <Property Name="NUMERO_UNIDAD" Type="Int16" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_ENTRADA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_SALIDA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CANTIDAD_PERSONAS" Type="Int16" Nullable="false" />
+          <Property Name="ESTADO_RESERVA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIANZA" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="IMPORTE_ESTIMADO" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_RESERVA_CLIENTE" FromRole="RESERVAS" ToRole="CLIENTES" />
+          <NavigationProperty Name="PAGOS" Relationship="Self.FK_PAGO_RESERVA" FromRole="RESERVAS" ToRole="PAGOS" />
+          <NavigationProperty Name="UNIDADES_ALOJAMIENTO" Relationship="Self.FK_RESERVA_UNIDAD" FromRole="RESERVAS" ToRole="UNIDADES_ALOJAMIENTO" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UNIDADES_ALOJAMIENTO">
+          <Key>
+            <PropertyRef Name="IDESTABLECIMIENTO" />
+            <PropertyRef Name="NUMERO" />
+          </Key>
+          <Property Name="IDESTABLECIMIENTO" Type="Int16" Nullable="false" />
+          <Property Name="NUMERO" Type="Int16" Nullable="false" />
+          <Property Name="NOMBRE_UNIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAPACIDAD_MAX" Type="Int16" Nullable="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO_NOCHE" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ESTABLECIMIENTO" Relationship="Self.FK_UNIDAD_ESTABLEC" FromRole="UNIDADES_ALOJAMIENTO" ToRole="ESTABLECIMIENTOS" />
+          <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVA_UNIDAD" FromRole="UNIDADES_ALOJAMIENTO" ToRole="RESERVAS" />
+        </EntityType>
+        <Association Name="FK_ESTABLEC_CATEG">
+          <End Role="CATEGORIAS" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="ESTABLECIMIENTOS" Type="Self.ESTABLECIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Principal>
+            <Dependent Role="ESTABLECIMIENTOS">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESERVA_CLIENTE">
+          <End Role="CLIENTES" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="RESERVAS" Type="Self.RESERVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="RESERVAS">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNIDAD_ESTABLEC">
+          <End Role="ESTABLECIMIENTOS" Type="Self.ESTABLECIMIENTO" Multiplicity="1" />
+          <End Role="UNIDADES_ALOJAMIENTO" Type="Self.UNIDADES_ALOJAMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTABLECIMIENTOS">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+            </Principal>
+            <Dependent Role="UNIDADES_ALOJAMIENTO">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAGO_RESERVA">
+          <End Role="RESERVAS" Type="Self.RESERVA" Multiplicity="1" />
+          <End Role="PAGOS" Type="Self.PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESERVAS">
+              <PropertyRef Name="IDRESERVA" />
+            </Principal>
+            <Dependent Role="PAGOS">
+              <PropertyRef Name="IDRESERVA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESERVA_UNIDAD">
+          <End Role="UNIDADES_ALOJAMIENTO" Type="Self.UNIDADES_ALOJAMIENTO" Multiplicity="1" />
+          <End Role="RESERVAS" Type="Self.RESERVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIDADES_ALOJAMIENTO">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+              <PropertyRef Name="NUMERO" />
+            </Principal>
+            <Dependent Role="RESERVAS">
+              <PropertyRef Name="IDESTABLECIMIENTO" />
+              <PropertyRef Name="NUMERO_UNIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlojamientosDavidMartinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTE" />
+          <EntitySet Name="ESTABLECIMIENTOS" EntityType="Self.ESTABLECIMIENTO" />
+          <EntitySet Name="PAGOS" EntityType="Self.PAGO" />
+          <EntitySet Name="RESERVAS" EntityType="Self.RESERVA" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="UNIDADES_ALOJAMIENTO" EntityType="Self.UNIDADES_ALOJAMIENTO" />
+          <AssociationSet Name="FK_ESTABLEC_CATEG" Association="Self.FK_ESTABLEC_CATEG">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="ESTABLECIMIENTOS" EntitySet="ESTABLECIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESERVA_CLIENTE" Association="Self.FK_RESERVA_CLIENTE">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNIDAD_ESTABLEC" Association="Self.FK_UNIDAD_ESTABLEC">
+            <End Role="ESTABLECIMIENTOS" EntitySet="ESTABLECIMIENTOS" />
+            <End Role="UNIDADES_ALOJAMIENTO" EntitySet="UNIDADES_ALOJAMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAGO_RESERVA" Association="Self.FK_PAGO_RESERVA">
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+            <End Role="PAGOS" EntitySet="PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESERVA_UNIDAD" Association="Self.FK_RESERVA_UNIDAD">
+            <End Role="UNIDADES_ALOJAMIENTO" EntitySet="UNIDADES_ALOJAMIENTO" />
+            <End Role="RESERVAS" EntitySet="RESERVAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlojamientosDavidMartinModelStoreContainer" CdmEntityContainer="AlojamientosDavidMartinEntities">
+          <EntitySetMapping Name="CATEGORIAS">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIAS">
+                <ScalarProperty Name="IDCATEGORIA" ColumnName="IDCATEGORIA" />
+                <ScalarProperty Name="NOMBRE_CATEGORIA" ColumnName="NOMBRE_CATEGORIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="DNI_NIE" ColumnName="DNI_NIE" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTABLECIMIENTOS">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.ESTABLECIMIENTO">
+              <MappingFragment StoreEntitySet="ESTABLECIMIENTOS">
+                <ScalarProperty Name="IDESTABLECIMIENTO" ColumnName="IDESTABLECIMIENTO" />
+                <ScalarProperty Name="NOMBRE_COMERCIAL" ColumnName="NOMBRE_COMERCIAL" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="IDCATEGORIA" ColumnName="IDCATEGORIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAGOS">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.PAGO">
+              <MappingFragment StoreEntitySet="PAGOS">
+                <ScalarProperty Name="IDPAGO" ColumnName="IDPAGO" />
+                <ScalarProperty Name="IDRESERVA" ColumnName="IDRESERVA" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+                <ScalarProperty Name="FECHA_PAGO" ColumnName="FECHA_PAGO" />
+                <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESERVAS">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.RESERVA">
+              <MappingFragment StoreEntitySet="RESERVAS">
+                <ScalarProperty Name="IDRESERVA" ColumnName="IDRESERVA" />
+                <ScalarProperty Name="IDESTABLECIMIENTO" ColumnName="IDESTABLECIMIENTO" />
+                <ScalarProperty Name="NUMERO_UNIDAD" ColumnName="NUMERO_UNIDAD" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_ENTRADA" ColumnName="FECHA_ENTRADA" />
+                <ScalarProperty Name="FECHA_SALIDA" ColumnName="FECHA_SALIDA" />
+                <ScalarProperty Name="CANTIDAD_PERSONAS" ColumnName="CANTIDAD_PERSONAS" />
+                <ScalarProperty Name="ESTADO_RESERVA" ColumnName="ESTADO_RESERVA" />
+                <ScalarProperty Name="FIANZA" ColumnName="FIANZA" />
+                <ScalarProperty Name="IMPORTE_ESTIMADO" ColumnName="IMPORTE_ESTIMADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNIDADES_ALOJAMIENTO">
+            <EntityTypeMapping TypeName="AlojamientosDavidMartinModel.UNIDADES_ALOJAMIENTO">
+              <MappingFragment StoreEntitySet="UNIDADES_ALOJAMIENTO">
+                <ScalarProperty Name="IDESTABLECIMIENTO" ColumnName="IDESTABLECIMIENTO" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="NOMBRE_UNIDAD" ColumnName="NOMBRE_UNIDAD" />
+                <ScalarProperty Name="CAPACIDAD_MAX" ColumnName="CAPACIDAD_MAX" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="PRECIO_NOCHE" ColumnName="PRECIO_NOCHE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
