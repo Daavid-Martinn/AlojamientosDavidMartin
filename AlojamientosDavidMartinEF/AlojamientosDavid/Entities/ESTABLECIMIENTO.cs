@@ -7,27 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDatos
+namespace Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE
+    public partial class ESTABLECIMIENTO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CLIENTE()
+        public ESTABLECIMIENTO()
         {
-            this.RESERVAS = new HashSet<RESERVA>();
+            this.UNIDADES_ALOJAMIENTO = new HashSet<UNIDADES_ALOJAMIENTO>();
         }
     
-        public int IDCLIENTE { get; set; }
-        public string DNI_NIE { get; set; }
-        public string NOMBRE { get; set; }
-        public string APELLIDOS { get; set; }
+        public short IDESTABLECIMIENTO { get; set; }
+        public string NOMBRE_COMERCIAL { get; set; }
+        public string DIRECCION { get; set; }
         public string TELEFONO { get; set; }
         public string EMAIL { get; set; }
+        public short IDCATEGORIA { get; set; }
     
+        public virtual CATEGORIA CATEGORIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RESERVA> RESERVAS { get; set; }
+        public virtual ICollection<UNIDADES_ALOJAMIENTO> UNIDADES_ALOJAMIENTO { get; set; }
     }
 }
