@@ -54,17 +54,41 @@ namespace CapaDatos
         {
 
         }
-        public void eliminarReserva(int id)
+        public Boolean eliminarReserva(int id)
         {
+            var reserva = gestionar.RESERVAS.Find(id);
 
+            if (reserva != null)
+            {
+                var pago = gestionar.PAGOS
+                    .FirstOrDefault(p => p.IDRESERVA == id);
+
+                if (pago != null)
+                {
+                    gestionar.PAGOS.Remove(pago);
+                }
+
+                gestionar.RESERVAS.Remove(reserva);
+
+                gestionar.SaveChanges();
+                return true;
+            }
+            return false;
         }
         public void insertarReserva(int idEstablecimiento,int idNumeroUnidad,int idCliente,DateTime fechaEntrada,DateTime fechaSalida,int CantidadPersonas,decimal? fianza,decimal ImporteEstimado)
         {
 
         }
-        public void eliminarPago(int id)
+        public Boolean eliminarPago(int id)
         {
-
+            var pago=gestionar.PAGOS.Find(id);
+            if(pago != null)
+            {
+                gestionar.PAGOS.Remove(pago);
+                gestionar.SaveChanges();
+                return true;
+            }
+            return false;
         }
         public void modificarPago(int idPago,decimal importe,DateTime? fechaPago,string metodoPago)
         {
