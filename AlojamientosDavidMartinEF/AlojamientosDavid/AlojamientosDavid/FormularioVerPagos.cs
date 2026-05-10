@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace AlojamientosDavid
 {
-    public partial class Form1 : Form
+    public partial class FormularioVerPagos : Form
     {
-        public Form1()
+        public FormularioVerPagos()
         {
             InitializeComponent();
         }
-
-     
     }
 }

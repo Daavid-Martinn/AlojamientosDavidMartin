@@ -46,14 +46,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarModificarPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarModificarPago.Designer.cs">
+      <DependentUpon>AgregarModificarPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarModificarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarModificarReserva.Designer.cs">
+      <DependentUpon>AgregarModificarReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormConsultasGenerales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConsultasGenerales.Designer.cs">
+      <DependentUpon>FormConsultasGenerales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioVerPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioVerPagos.Designer.cs">
+      <DependentUpon>FormularioVerPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioVerReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioVerReservas.Designer.cs">
+      <DependentUpon>FormularioVerReservas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioVerReservas.resx">
+      <DependentUpon>FormularioVerReservas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
