@@ -52,9 +52,64 @@ namespace CapaDatos
         }
 
         //Consultas mas complejas
-        public void editarReserva(int id, DateTime fechaEntrada, DateTime fechaSalida, int cantidadPersonas, string estado, decimal? fianza, decimal importeEstimado)
+        public void editarReserva(int id,DateTime fechaEntrada,DateTime fechaSalida,short cantidadPersonas,string estado,decimal? fianza,decimal importeEstimado)
         {
+            RESERVA reserva = gestionar.RESERVAS.Find(id);
 
+            if (reserva == null)
+            {
+                throw new Exception("La reserva no existe");
+            }
+
+            string[] estadosValidos =
+            {
+                "Pendiente",
+                "Confirmada",
+                "Cancelada",
+                "Finalizada"
+            };
+
+            if (!estadosValidos.Contains(estado))
+            {
+                throw new Exception("Estado no válido");
+            }
+
+            if (fechaSalida <= fechaEntrada)
+            {
+                throw new Exception("La fecha de salida debe ser posterior");
+            }
+
+            if (cantidadPersonas <= 0)
+            {
+                throw new Exception("Cantidad personas incorrecta");
+            }
+
+            if (fianza != null && fianza < 0)
+            {
+                throw new Exception("La fianza no puede ser negativa");
+            }
+
+            if (importeEstimado < 0)
+            {
+                throw new Exception("El importe no puede ser negativo");
+            }
+
+            bool yaExisteReserva = gestionar.RESERVAS.Any(r => r.IDRESERVA != id && r.IDESTABLECIMIENTO == reserva.IDESTABLECIMIENTO && r.NUMERO_UNIDAD == reserva.NUMERO_UNIDAD && fechaEntrada < r.FECHA_SALIDA && fechaSalida > r.FECHA_ENTRADA);
+
+            if (yaExisteReserva)
+            {
+                throw new Exception("Ya existe una reserva en esas fechas");
+            }
+
+            reserva.FECHA_ENTRADA = fechaEntrada;
+            reserva.FECHA_SALIDA = fechaSalida;
+            reserva.CANTIDAD_PERSONAS = cantidadPersonas;
+            reserva.ESTADO_RESERVA = estado;
+            reserva.FIANZA = fianza;
+            reserva.IMPORTE_ESTIMADO = importeEstimado;
+
+            gestionar.SaveChanges();
+            //Le he puesto que solo se puedan modificar estos campos en vez de todos para que sea mas realista
         }
         public Boolean eliminarReserva(int id)
         {
@@ -153,7 +208,28 @@ namespace CapaDatos
         }
         public void modificarPago(int idPago,decimal importe,DateTime? fechaPago,string metodoPago)
         {
+            var pago = gestionar.PAGOS.Find(idPago);
 
+            if (pago == null)
+            {
+                throw new Exception("El pago no existe");
+            }
+
+            if (importe <= 0)
+            {
+                throw new Exception("El importe debe ser mayor que 0");
+            }
+
+            if (string.IsNullOrWhiteSpace(metodoPago))
+            {
+                throw new Exception("Debe indicar un método de pago");
+            }
+
+            pago.IMPORTE = importe;
+            pago.METODO_PAGO = metodoPago;
+
+            gestionar.SaveChanges();
+            //Le he puesto que solo se puedan modificar estos campos en vez de todos para que sea mas realista
         }
         public void insertarPago(int idReserva, decimal importe, string MetodoPago)
         {
