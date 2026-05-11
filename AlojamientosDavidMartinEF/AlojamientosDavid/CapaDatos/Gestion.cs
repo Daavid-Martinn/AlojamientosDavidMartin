@@ -52,6 +52,8 @@ namespace CapaDatos
         }
 
         //Consultas mas complejas
+
+        //Consultas reservas
         public void editarReserva(int id,DateTime fechaEntrada,DateTime fechaSalida,short cantidadPersonas,string estado,decimal? fianza,decimal importeEstimado)
         {
             RESERVA reserva = gestionar.RESERVAS.Find(id);
@@ -195,6 +197,8 @@ namespace CapaDatos
             gestionar.RESERVAS.Add(res);
             gestionar.SaveChanges();
         }
+
+        //Consultas pagos
         public Boolean eliminarPago(int id)
         {
             var pago=gestionar.PAGOS.Find(id);

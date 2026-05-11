@@ -84,8 +84,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AgregarModificarPago.resx">
+      <DependentUpon>AgregarModificarPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarModificarReserva.resx">
+      <DependentUpon>AgregarModificarReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConsultasGenerales.resx">
+      <DependentUpon>FormConsultasGenerales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioVerPagos.resx">
+      <DependentUpon>FormularioVerPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioVerReservas.resx">
       <DependentUpon>FormularioVerReservas.cs</DependentUpon>
