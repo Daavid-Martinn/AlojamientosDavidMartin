@@ -72,6 +72,7 @@
             this.dgv1.RowTemplate.Height = 24;
             this.dgv1.Size = new System.Drawing.Size(639, 269);
             this.dgv1.TabIndex = 3;
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // btnReservasTodas
             // 
@@ -81,6 +82,7 @@
             this.btnReservasTodas.TabIndex = 4;
             this.btnReservasTodas.Text = "Ver Reservas";
             this.btnReservasTodas.UseVisualStyleBackColor = true;
+            this.btnReservasTodas.Click += new System.EventHandler(this.btnReservasTodas_Click);
             // 
             // btnVover
             // 
@@ -92,6 +94,7 @@
             this.btnVover.TabIndex = 7;
             this.btnVover.Text = "Volver";
             this.btnVover.UseVisualStyleBackColor = false;
+            this.btnVover.Click += new System.EventHandler(this.btnVover_Click);
             // 
             // label2
             // 
@@ -118,6 +121,7 @@
             this.btnFiltrar.TabIndex = 10;
             this.btnFiltrar.Text = "Ver reserva con ese id";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // label3
             // 
@@ -136,6 +140,7 @@
             this.btnInsertar.TabIndex = 13;
             this.btnInsertar.Text = "Insertar reserva";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // btnInsPago
             // 
@@ -154,6 +159,7 @@
             this.btnModificar.TabIndex = 15;
             this.btnModificar.Text = "Modificar reserva (Seleccione la reserva que quiera editar en la lista)";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -163,6 +169,7 @@
             this.btnEliminar.TabIndex = 16;
             this.btnEliminar.Text = "Eliminar reserva (Seleccione en la lista)";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // FormularioVerReservas
             // 

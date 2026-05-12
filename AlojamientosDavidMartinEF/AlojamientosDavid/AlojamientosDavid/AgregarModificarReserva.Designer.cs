@@ -50,7 +50,6 @@
             this.btnInsertar = new System.Windows.Forms.Button();
             this.groupBoxInsertar = new System.Windows.Forms.GroupBox();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.btnVolverInicio = new System.Windows.Forms.Button();
             this.lblTituloModificar = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,7 +57,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbdEstado = new System.Windows.Forms.ComboBox();
+            this.cbdEstadoMod = new System.Windows.Forms.ComboBox();
             this.txtCantMod = new System.Windows.Forms.TextBox();
             this.txtFianzaMod = new System.Windows.Forms.TextBox();
             this.txtImporteMod = new System.Windows.Forms.TextBox();
@@ -72,6 +71,9 @@
             this.lblCliente = new System.Windows.Forms.Label();
             this.Modificar = new System.Windows.Forms.Button();
             this.groupBoxModificar = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cboEstadoIns = new System.Windows.Forms.ComboBox();
             this.groupBoxInsertar.SuspendLayout();
             this.groupBoxModificar.SuspendLayout();
             this.SuspendLayout();
@@ -79,9 +81,9 @@
             // cbdUdAlojamiento
             // 
             this.cbdUdAlojamiento.FormattingEnabled = true;
-            this.cbdUdAlojamiento.Location = new System.Drawing.Point(161, 143);
+            this.cbdUdAlojamiento.Location = new System.Drawing.Point(166, 144);
             this.cbdUdAlojamiento.Name = "cbdUdAlojamiento";
-            this.cbdUdAlojamiento.Size = new System.Drawing.Size(121, 24);
+            this.cbdUdAlojamiento.Size = new System.Drawing.Size(147, 24);
             this.cbdUdAlojamiento.TabIndex = 10;
             // 
             // label8
@@ -133,7 +135,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 290);
+            this.label15.Location = new System.Drawing.Point(12, 318);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(182, 16);
             this.label15.TabIndex = 30;
@@ -142,7 +144,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 324);
+            this.label16.Location = new System.Drawing.Point(19, 366);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 16);
             this.label16.TabIndex = 31;
@@ -151,34 +153,37 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(12, 360);
+            this.label17.Location = new System.Drawing.Point(12, 411);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(93, 16);
             this.label17.TabIndex = 32;
             this.label17.Text = "Importe (num)*";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // cbdEstablecimiento
             // 
             this.cbdEstablecimiento.FormattingEnabled = true;
-            this.cbdEstablecimiento.Location = new System.Drawing.Point(121, 104);
+            this.cbdEstablecimiento.Location = new System.Drawing.Point(126, 99);
             this.cbdEstablecimiento.Name = "cbdEstablecimiento";
-            this.cbdEstablecimiento.Size = new System.Drawing.Size(121, 24);
+            this.cbdEstablecimiento.Size = new System.Drawing.Size(177, 24);
             this.cbdEstablecimiento.TabIndex = 34;
+            this.cbdEstablecimiento.SelectedIndexChanged += new System.EventHandler(this.cbdEstablecimiento_SelectedIndexChanged);
             // 
             // cbdCategoria
             // 
             this.cbdCategoria.FormattingEnabled = true;
             this.cbdCategoria.Location = new System.Drawing.Point(102, 69);
             this.cbdCategoria.Name = "cbdCategoria";
-            this.cbdCategoria.Size = new System.Drawing.Size(121, 24);
+            this.cbdCategoria.Size = new System.Drawing.Size(185, 24);
             this.cbdCategoria.TabIndex = 35;
+            this.cbdCategoria.SelectedIndexChanged += new System.EventHandler(this.cbdCategoria_SelectedIndexChanged);
             // 
             // cbdCliente
             // 
             this.cbdCliente.FormattingEnabled = true;
             this.cbdCliente.Location = new System.Drawing.Point(93, 175);
             this.cbdCliente.Name = "cbdCliente";
-            this.cbdCliente.Size = new System.Drawing.Size(121, 24);
+            this.cbdCliente.Size = new System.Drawing.Size(152, 24);
             this.cbdCliente.TabIndex = 36;
             // 
             // label19
@@ -215,36 +220,39 @@
             // 
             // txtCantIns
             // 
-            this.txtCantIns.Location = new System.Drawing.Point(200, 287);
+            this.txtCantIns.Location = new System.Drawing.Point(213, 315);
             this.txtCantIns.Name = "txtCantIns";
             this.txtCantIns.Size = new System.Drawing.Size(100, 22);
             this.txtCantIns.TabIndex = 41;
             // 
             // txtImporteIns
             // 
-            this.txtImporteIns.Location = new System.Drawing.Point(113, 360);
+            this.txtImporteIns.Location = new System.Drawing.Point(113, 408);
             this.txtImporteIns.Name = "txtImporteIns";
             this.txtImporteIns.Size = new System.Drawing.Size(100, 22);
             this.txtImporteIns.TabIndex = 42;
             // 
             // txtFianzaIns
             // 
-            this.txtFianzaIns.Location = new System.Drawing.Point(103, 321);
+            this.txtFianzaIns.Location = new System.Drawing.Point(113, 366);
             this.txtFianzaIns.Name = "txtFianzaIns";
             this.txtFianzaIns.Size = new System.Drawing.Size(100, 22);
             this.txtFianzaIns.TabIndex = 43;
             // 
             // btnInsertar
             // 
-            this.btnInsertar.Location = new System.Drawing.Point(228, 331);
+            this.btnInsertar.Location = new System.Drawing.Point(241, 382);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(85, 45);
             this.btnInsertar.TabIndex = 44;
             this.btnInsertar.Text = "Insertar";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // groupBoxInsertar
             // 
+            this.groupBoxInsertar.Controls.Add(this.cboEstadoIns);
+            this.groupBoxInsertar.Controls.Add(this.label18);
             this.groupBoxInsertar.Controls.Add(this.btnInsertar);
             this.groupBoxInsertar.Controls.Add(this.txtFianzaIns);
             this.groupBoxInsertar.Controls.Add(this.txtImporteIns);
@@ -265,9 +273,9 @@
             this.groupBoxInsertar.Controls.Add(this.label9);
             this.groupBoxInsertar.Controls.Add(this.label8);
             this.groupBoxInsertar.Controls.Add(this.cbdUdAlojamiento);
-            this.groupBoxInsertar.Location = new System.Drawing.Point(405, 14);
+            this.groupBoxInsertar.Location = new System.Drawing.Point(506, 31);
             this.groupBoxInsertar.Name = "groupBoxInsertar";
-            this.groupBoxInsertar.Size = new System.Drawing.Size(323, 407);
+            this.groupBoxInsertar.Size = new System.Drawing.Size(356, 455);
             this.groupBoxInsertar.TabIndex = 45;
             this.groupBoxInsertar.TabStop = false;
             // 
@@ -275,23 +283,13 @@
             // 
             this.btnVolver.BackColor = System.Drawing.Color.Red;
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVolver.Location = new System.Drawing.Point(734, 41);
+            this.btnVolver.Location = new System.Drawing.Point(401, 197);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(64, 75);
+            this.btnVolver.Size = new System.Drawing.Size(99, 45);
             this.btnVolver.TabIndex = 46;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = false;
-            // 
-            // btnVolverInicio
-            // 
-            this.btnVolverInicio.BackColor = System.Drawing.Color.Red;
-            this.btnVolverInicio.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVolverInicio.Location = new System.Drawing.Point(734, 163);
-            this.btnVolverInicio.Name = "btnVolverInicio";
-            this.btnVolverInicio.Size = new System.Drawing.Size(64, 75);
-            this.btnVolverInicio.TabIndex = 47;
-            this.btnVolverInicio.Text = "Volver inicio";
-            this.btnVolverInicio.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // lblTituloModificar
             // 
@@ -357,13 +355,13 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Cantidad personas (numero)*";
             // 
-            // cbdEstado
+            // cbdEstadoMod
             // 
-            this.cbdEstado.FormattingEnabled = true;
-            this.cbdEstado.Location = new System.Drawing.Point(100, 292);
-            this.cbdEstado.Name = "cbdEstado";
-            this.cbdEstado.Size = new System.Drawing.Size(121, 24);
-            this.cbdEstado.TabIndex = 9;
+            this.cbdEstadoMod.FormattingEnabled = true;
+            this.cbdEstadoMod.Location = new System.Drawing.Point(100, 292);
+            this.cbdEstadoMod.Name = "cbdEstadoMod";
+            this.cbdEstadoMod.Size = new System.Drawing.Size(121, 24);
+            this.cbdEstadoMod.TabIndex = 9;
             // 
             // txtCantMod
             // 
@@ -421,7 +419,7 @@
             // 
             // dtpSalidaMod
             // 
-            this.dtpSalidaMod.Location = new System.Drawing.Point(119, 218);
+            this.dtpSalidaMod.Location = new System.Drawing.Point(134, 218);
             this.dtpSalidaMod.Name = "dtpSalidaMod";
             this.dtpSalidaMod.Size = new System.Drawing.Size(200, 22);
             this.dtpSalidaMod.TabIndex = 20;
@@ -459,6 +457,7 @@
             this.Modificar.TabIndex = 24;
             this.Modificar.Text = "Modificar";
             this.Modificar.UseVisualStyleBackColor = true;
+            this.Modificar.Click += new System.EventHandler(this.Modificar_Click);
             // 
             // groupBoxModificar
             // 
@@ -474,7 +473,7 @@
             this.groupBoxModificar.Controls.Add(this.txtImporteMod);
             this.groupBoxModificar.Controls.Add(this.txtFianzaMod);
             this.groupBoxModificar.Controls.Add(this.txtCantMod);
-            this.groupBoxModificar.Controls.Add(this.cbdEstado);
+            this.groupBoxModificar.Controls.Add(this.cbdEstadoMod);
             this.groupBoxModificar.Controls.Add(this.label6);
             this.groupBoxModificar.Controls.Add(this.label5);
             this.groupBoxModificar.Controls.Add(this.label4);
@@ -488,17 +487,45 @@
             this.groupBoxModificar.TabIndex = 24;
             this.groupBoxModificar.TabStop = false;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(401, 273);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(99, 38);
+            this.btnLimpiar.TabIndex = 47;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 281);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(55, 16);
+            this.label18.TabIndex = 45;
+            this.label18.Text = "Estado*";
+            // 
+            // cboEstadoIns
+            // 
+            this.cboEstadoIns.FormattingEnabled = true;
+            this.cboEstadoIns.Location = new System.Drawing.Point(93, 278);
+            this.cboEstadoIns.Name = "cboEstadoIns";
+            this.cboEstadoIns.Size = new System.Drawing.Size(147, 24);
+            this.cboEstadoIns.TabIndex = 46;
+            // 
             // AgregarModificarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnVolverInicio);
+            this.ClientSize = new System.Drawing.Size(903, 514);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBoxInsertar);
             this.Controls.Add(this.groupBoxModificar);
             this.Name = "AgregarModificarReserva";
             this.Text = "AgregarModificarReserva";
+            this.Load += new System.EventHandler(this.AgregarModificarReserva_Load);
             this.groupBoxInsertar.ResumeLayout(false);
             this.groupBoxInsertar.PerformLayout();
             this.groupBoxModificar.ResumeLayout(false);
@@ -530,7 +557,6 @@
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.GroupBox groupBoxInsertar;
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Button btnVolverInicio;
         private System.Windows.Forms.Label lblTituloModificar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -538,7 +564,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cbdEstado;
+        private System.Windows.Forms.ComboBox cbdEstadoMod;
         private System.Windows.Forms.TextBox txtCantMod;
         private System.Windows.Forms.TextBox txtFianzaMod;
         private System.Windows.Forms.TextBox txtImporteMod;
@@ -552,5 +578,8 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Button Modificar;
         private System.Windows.Forms.GroupBox groupBoxModificar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ComboBox cboEstadoIns;
+        private System.Windows.Forms.Label label18;
     }
 }

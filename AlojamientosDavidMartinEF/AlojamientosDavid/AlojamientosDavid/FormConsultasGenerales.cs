@@ -36,7 +36,7 @@ namespace AlojamientosDavid
                 a.NOMBRE_COMERCIAL,
                 a.DIRECCION,
                 a.TELEFONO,
-                a.EMAIL,
+                Email = a.EMAIL ?? "No tiene",
                 Categoria=a.CATEGORIA.NOMBRE_CATEGORIA,
             }).ToList();
             lblTitulo.Text = "Estos son todos los establecimientos disponibles";
@@ -65,7 +65,7 @@ namespace AlojamientosDavid
                 c.DNI_NIE,
                 Nombre_Completo=c.NOMBRE+" "+c.APELLIDOS,
                 c.TELEFONO,
-                c.EMAIL,
+                Email=c.EMAIL ?? "No tiene",
             }).ToList();
             lblTitulo.Text = "Estos son todos los clientes registrados";
         }

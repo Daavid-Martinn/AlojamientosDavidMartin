@@ -40,7 +40,12 @@ namespace CapaDatos
         }
         public RESERVA reservaConcreta(int id)
         {
-            return gestionar.RESERVAS.Find(id);
+            RESERVA reserva= gestionar.RESERVAS.Find(id);
+            if (reserva == null)
+            {
+                throw new Exception("No existe una reserva con ese id");
+            }
+            return reserva;
         }
         public List<PAGO> devolverPagos()
         {
@@ -279,6 +284,12 @@ namespace CapaDatos
             gestionar.SaveChanges();
         }
 
+
+        //Consultas extras
+        public List<CATEGORIA> devolverCategorias()
+        {
+            return gestionar.CATEGORIAS.ToList();
+        }
 
     }
 }

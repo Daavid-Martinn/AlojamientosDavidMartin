@@ -41,11 +41,11 @@ INSERT INTO UNIDADES_ALOJAMIENTO (IDESTABLECIMIENTO, NUMERO, NOMBRE_UNIDAD, CAPA
 -- Reservas
 -- Nota: La fianza puede ser NULL
 INSERT INTO RESERVAS (IDESTABLECIMIENTO, NUMERO_UNIDAD, IDCLIENTE, FECHA_ENTRADA, FECHA_SALIDA, CANTIDAD_PERSONAS, ESTADO_RESERVA, FIANZA, IMPORTE_ESTIMADO) VALUES
-(1, 101, 1, '2026-05-10', '2026-05-15', 2, 'Confirmada', 50.00, 425.00),
-(2, 1, 2, '2026-06-01', '2026-06-03', 1, 'Finalizada', NULL, 121.00),
-(3, 10, 3, '2026-07-20', '2026-07-25', 3, 'Pendiente', 100.00, 475.00);
+(1, 101, 1, '20260510', '20260515', 2, 'Confirmada', 50.00, 425.00),
+(2, 1, 2, '20260601', '20260603', 1, 'Finalizada', NULL, 121.00),
+(3, 10, 3, '20260720', '20260725', 3, 'Pendiente', 100.00, 475.00);
 
 -- Pagos
 INSERT INTO PAGOS (IDRESERVA, IMPORTE, FECHA_PAGO, METODO_PAGO) VALUES
-(1, 50.00, '2026-04-01', 'Tarjeta de Crédito'), -- Pago de fianza
-(2, 121.00, '2026-06-03', 'Efectivo'); -- Pago final al salir
+(4, 50.00, '20260401', 'Tarjeta de Crédito'), -- Pago de fianza
+(5, 121.00, '20260603', 'Efectivo'); -- Pago final al salir
