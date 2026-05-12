@@ -74,6 +74,7 @@
             this.btnAlojamientos.TabIndex = 3;
             this.btnAlojamientos.Text = "Ver Alojamientos";
             this.btnAlojamientos.UseVisualStyleBackColor = true;
+            this.btnAlojamientos.Click += new System.EventHandler(this.btnAlojamientos_Click);
             // 
             // btnUnidades
             // 
@@ -83,6 +84,7 @@
             this.btnUnidades.TabIndex = 4;
             this.btnUnidades.Text = "Ver Uds De Alojamiento";
             this.btnUnidades.UseVisualStyleBackColor = true;
+            this.btnUnidades.Click += new System.EventHandler(this.btnUnidades_Click);
             // 
             // btnClientes
             // 
@@ -92,6 +94,7 @@
             this.btnClientes.TabIndex = 5;
             this.btnClientes.Text = "Ver Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnVover
             // 
@@ -101,6 +104,7 @@
             this.btnVover.TabIndex = 6;
             this.btnVover.Text = "Volver";
             this.btnVover.UseVisualStyleBackColor = true;
+            this.btnVover.Click += new System.EventHandler(this.btnVover_Click);
             // 
             // FormConsultasGenerales
             // 

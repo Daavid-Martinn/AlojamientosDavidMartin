@@ -252,9 +252,9 @@
             this.lblTituloIns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloIns.Location = new System.Drawing.Point(26, 11);
             this.lblTituloIns.Name = "lblTituloIns";
-            this.lblTituloIns.Size = new System.Drawing.Size(280, 25);
+            this.lblTituloIns.Size = new System.Drawing.Size(266, 25);
             this.lblTituloIns.TabIndex = 2;
-            this.lblTituloIns.Text = "Formulario para modificar pago";
+            this.lblTituloIns.Text = "Formulario para insertar pago";
             // 
             // lblImporteIns
             // 

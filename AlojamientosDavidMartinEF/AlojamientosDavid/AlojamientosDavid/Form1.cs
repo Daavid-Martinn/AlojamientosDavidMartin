@@ -17,6 +17,19 @@ namespace AlojamientosDavid
             InitializeComponent();
         }
 
-     
+        private void formularioPrincipalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormConsultasGenerales().Show();
+        }
+
+        private void verReservasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormularioVerReservas().Show();
+        }
+
+        private void verPagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormularioVerPagos().Show();
+        }
     }
 }

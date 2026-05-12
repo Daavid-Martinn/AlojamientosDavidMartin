@@ -60,20 +60,23 @@
             // formularioPrincipalToolStripMenuItem
             // 
             this.formularioPrincipalToolStripMenuItem.Name = "formularioPrincipalToolStripMenuItem";
-            this.formularioPrincipalToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.formularioPrincipalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.formularioPrincipalToolStripMenuItem.Text = "Consultas generales";
+            this.formularioPrincipalToolStripMenuItem.Click += new System.EventHandler(this.formularioPrincipalToolStripMenuItem_Click);
             // 
             // verReservasToolStripMenuItem
             // 
             this.verReservasToolStripMenuItem.Name = "verReservasToolStripMenuItem";
-            this.verReservasToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.verReservasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.verReservasToolStripMenuItem.Text = "Ver reservas";
+            this.verReservasToolStripMenuItem.Click += new System.EventHandler(this.verReservasToolStripMenuItem_Click);
             // 
             // verPagosToolStripMenuItem
             // 
             this.verPagosToolStripMenuItem.Name = "verPagosToolStripMenuItem";
-            this.verPagosToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.verPagosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.verPagosToolStripMenuItem.Text = "Ver pagos";
+            this.verPagosToolStripMenuItem.Click += new System.EventHandler(this.verPagosToolStripMenuItem_Click);
             // 
             // Form1
             // 
