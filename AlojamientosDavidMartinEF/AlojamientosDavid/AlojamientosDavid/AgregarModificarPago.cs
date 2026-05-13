@@ -53,6 +53,9 @@ namespace AlojamientosDavid
                 groupBoxInsertar.Visible = false;
                 lblIdPagoMod.Text = idPago.ToString();
                 lblReservaMod.Text = idReserva.ToString();
+                PAGO pago = gestionar.pagoConcreto(idPago);
+                txtImporteMod.Text = pago.IMPORTE.ToString();
+                txtMetodoMod.Text = pago.METODO_PAGO;
             }
         }
 
@@ -63,10 +66,10 @@ namespace AlojamientosDavid
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            string importeStr=lblImporteIns.Text;
-            if(!(decimal.TryParse(importeStr,out decimal importe)))
+            if(!(decimal.TryParse(lblImporteIns.Text, out decimal importe)))
             {
                 MessageBox.Show("El importe da error");
+                return;
             }
             try
             {
@@ -87,20 +90,21 @@ namespace AlojamientosDavid
 
         private void Modificar_Click(object sender, EventArgs e)
         {
-            string importeStr = txtImporteMod.Text;
-            if (string.IsNullOrWhiteSpace(importeStr))
+            if (string.IsNullOrWhiteSpace(txtImporteMod.Text))
             {
                 MessageBox.Show("El importe es obligatorio");
+                return;
             }
-            if (!(decimal.TryParse(importeStr, out decimal importe)))
+            if (!(decimal.TryParse(txtImporteMod.Text, out decimal importe)))
             {
                 MessageBox.Show("Introduce un importe válido");
+                return;
             }
             try
             {
                 gestionar.modificarPago(idPago, importe,DateTime.Now, txtMetodoMod.Text);
                 MessageBox.Show($"Se ha modificado correctamente el pago asociado a la reserva con id {idReserva}");
-                limpiar();
+                Close();
             }
             catch (Exception ex)
             {

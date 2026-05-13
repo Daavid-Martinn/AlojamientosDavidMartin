@@ -72,6 +72,12 @@ namespace AlojamientosDavid
                 lblUd.Text = reserva.UNIDADES_ALOJAMIENTO.NOMBRE_UNIDAD;
                 lblCliente.Text = reserva.CLIENTE.NOMBRE;
                 cbdEstadoMod.Items.AddRange(estados.ToArray());
+                dtpEntradaMod.Value = reserva.FECHA_ENTRADA;
+                dtpSalidaMod.Value = reserva.FECHA_SALIDA;
+                txtCantMod.Text = reserva.CANTIDAD_PERSONAS.ToString();
+                txtFianzaMod.Text = reserva.FIANZA?.ToString() ?? "";
+                txtImporteMod.Text = reserva.IMPORTE_ESTIMADO.ToString();
+                cbdEstadoMod.SelectedItem = reserva.ESTADO_RESERVA;
             }
           
         }
@@ -105,12 +111,22 @@ namespace AlojamientosDavid
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            String cantStr = txtCantIns.Text;
-            String fianzaStr=txtFianzaIns.Text;
-            String importeStr=txtImporteIns.Text;
-            if(!(short.TryParse(cantStr,out short cant))|| !(decimal.TryParse(fianzaStr, out decimal fianza))|| !(decimal.TryParse(importeStr, out decimal importe)))
+            decimal? fianza = null;
+
+            //La fianza la valido aparte porque puede ser null
+            if (!string.IsNullOrWhiteSpace(txtFianzaIns.Text))
             {
-                MessageBox.Show("Introduce datos validos porfa");
+                if (!decimal.TryParse(txtFianzaIns.Text, out decimal f))
+                {
+                    MessageBox.Show("Fianza incorrecta");
+                    return;
+                }
+
+                fianza = f;
+            }
+            if (!(short.TryParse(txtCantIns.Text, out short cant))|| !(decimal.TryParse(txtImporteIns.Text, out decimal importe)))
+            {
+                MessageBox.Show("Introduce datos validos");
                 return;
             }
             ESTABLECIMIENTO est = (ESTABLECIMIENTO)cbdEstablecimiento.SelectedItem;
@@ -146,12 +162,21 @@ namespace AlojamientosDavid
 
         private void Modificar_Click(object sender, EventArgs e)
         {
-            String cantStr = txtCantMod.Text;
-            String fianzaStr = txtFianzaMod.Text;
-            String importeStr = txtImporteMod.Text;
-            if (!(short.TryParse(cantStr, out short cant)) || !(decimal.TryParse(fianzaStr, out decimal fianza)) || !(decimal.TryParse(importeStr, out decimal importe)))
+            decimal? fianza = null;
+
+            if (!string.IsNullOrWhiteSpace(txtFianzaMod.Text))
             {
-                MessageBox.Show("Introduce datos validos porfa");
+                if (!decimal.TryParse(txtFianzaMod.Text, out decimal f))
+                {
+                    MessageBox.Show("Fianza incorrecta");
+                    return;
+                }
+
+                fianza = f;
+            }
+            if (!(short.TryParse(txtCantMod.Text, out short cant)) || !(decimal.TryParse(txtImporteMod.Text, out decimal importe)))
+            {
+                MessageBox.Show("Introduce datos validos");
                 return;
             }
             String estado = (String)cbdEstadoMod.SelectedItem;
@@ -164,7 +189,7 @@ namespace AlojamientosDavid
             {
                 gestionar.editarReserva(idReserva, dtpEntradaMod.Value, dtpSalidaMod.Value, cant, estado, fianza, importe);
                 MessageBox.Show($"Se ha modificado correctamente la reserva con id {idReserva}");
-                limpiar();
+                Close();
             }
             catch (Exception ex)
             {
