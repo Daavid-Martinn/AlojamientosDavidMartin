@@ -162,5 +162,18 @@ namespace AlojamientosDavid
             cargarReservas();
 
         }
+
+        private void btnInsPago_Click(object sender, EventArgs e)
+        {
+            if (filaSeleccionada == 0)
+            {
+                MessageBox.Show("No has seleccionado ningun elemento de la lista");
+                return;
+            }
+            AgregarModificarPago frm = new AgregarModificarPago(filaSeleccionada,0);
+            frm.ShowDialog();
+            filaSeleccionada = 0;
+            cargarReservas();
+        }
     }
 }

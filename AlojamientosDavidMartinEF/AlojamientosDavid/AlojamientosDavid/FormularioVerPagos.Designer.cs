@@ -69,6 +69,7 @@
             this.dgv1.RowTemplate.Height = 24;
             this.dgv1.Size = new System.Drawing.Size(639, 269);
             this.dgv1.TabIndex = 4;
+            this.dgv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv1_CellClick);
             // 
             // btnVover
             // 
@@ -80,6 +81,7 @@
             this.btnVover.TabIndex = 8;
             this.btnVover.Text = "Volver";
             this.btnVover.UseVisualStyleBackColor = false;
+            this.btnVover.Click += new System.EventHandler(this.btnVover_Click);
             // 
             // label2
             // 
@@ -105,6 +107,7 @@
             this.btnFiltrar.TabIndex = 11;
             this.btnFiltrar.Text = "Ver pago con ese id";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // label3
             // 
@@ -123,6 +126,7 @@
             this.btnPagosTodas.TabIndex = 13;
             this.btnPagosTodas.Text = "Ver Pagos";
             this.btnPagosTodas.UseVisualStyleBackColor = true;
+            this.btnPagosTodas.Click += new System.EventHandler(this.btnPagosTodas_Click);
             // 
             // btnEliminar
             // 
@@ -132,6 +136,7 @@
             this.btnEliminar.TabIndex = 17;
             this.btnEliminar.Text = "Eliminar pago (Seleccione en la lista el pago que quiere eliminar)";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -141,6 +146,7 @@
             this.btnModificar.TabIndex = 18;
             this.btnModificar.Text = "Modificar pago (Seleccione el pago que quiera editar en la lista)";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // FormularioVerPagos
             // 

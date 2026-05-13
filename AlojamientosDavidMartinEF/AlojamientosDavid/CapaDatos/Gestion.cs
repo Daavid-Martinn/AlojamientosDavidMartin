@@ -53,7 +53,12 @@ namespace CapaDatos
         }
         public PAGO pagoConcreto(int id)
         {
-            return gestionar.PAGOS.Find(id);
+            PAGO pago= gestionar.PAGOS.Find(id);
+            if( pago == null)
+            {
+                throw new Exception("No existe un pago con ese id");
+            }
+            return pago;    
         }
 
         //Consultas mas complejas

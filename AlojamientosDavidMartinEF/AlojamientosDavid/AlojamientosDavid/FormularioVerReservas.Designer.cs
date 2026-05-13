@@ -150,6 +150,7 @@
             this.btnInsPago.TabIndex = 14;
             this.btnInsPago.Text = "Insertar pago (Seleccione en la lista la reserva a la que asociara el pago)";
             this.btnInsPago.UseVisualStyleBackColor = true;
+            this.btnInsPago.Click += new System.EventHandler(this.btnInsPago_Click);
             // 
             // btnModificar
             // 

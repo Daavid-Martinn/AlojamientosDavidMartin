@@ -33,15 +33,15 @@
             this.lblReservaMod = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
+            this.lblIdPagoMod = new System.Windows.Forms.Label();
             this.txtImporteMod = new System.Windows.Forms.TextBox();
             this.txtMetodoMod = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTituloModificar = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.btnVolverInicio = new System.Windows.Forms.Button();
             this.groupBoxInsertar = new System.Windows.Forms.GroupBox();
+            this.lblImporteIns = new System.Windows.Forms.Label();
             this.btnInsertar = new System.Windows.Forms.Button();
             this.lblIdReservaIns = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.txtMetodoIns = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblTituloIns = new System.Windows.Forms.Label();
-            this.lblImporteIns = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBoxModificar.SuspendLayout();
             this.groupBoxInsertar.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +60,7 @@
             this.groupBoxModificar.Controls.Add(this.lblReservaMod);
             this.groupBoxModificar.Controls.Add(this.label7);
             this.groupBoxModificar.Controls.Add(this.label11);
-            this.groupBoxModificar.Controls.Add(this.lblId);
+            this.groupBoxModificar.Controls.Add(this.lblIdPagoMod);
             this.groupBoxModificar.Controls.Add(this.txtImporteMod);
             this.groupBoxModificar.Controls.Add(this.txtMetodoMod);
             this.groupBoxModificar.Controls.Add(this.label3);
@@ -80,6 +80,7 @@
             this.Modificar.TabIndex = 24;
             this.Modificar.Text = "Modificar";
             this.Modificar.UseVisualStyleBackColor = true;
+            this.Modificar.Click += new System.EventHandler(this.Modificar_Click);
             // 
             // lblReservaMod
             // 
@@ -107,13 +108,13 @@
             this.label11.TabIndex = 18;
             this.label11.Text = "Metodo de pago*";
             // 
-            // lblId
+            // lblIdPagoMod
             // 
-            this.lblId.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblId.Location = new System.Drawing.Point(101, 81);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(100, 23);
-            this.lblId.TabIndex = 14;
+            this.lblIdPagoMod.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblIdPagoMod.Location = new System.Drawing.Point(101, 81);
+            this.lblIdPagoMod.Name = "lblIdPagoMod";
+            this.lblIdPagoMod.Size = new System.Drawing.Size(100, 23);
+            this.lblIdPagoMod.TabIndex = 14;
             // 
             // txtImporteMod
             // 
@@ -161,23 +162,13 @@
             // 
             this.btnVolver.BackColor = System.Drawing.Color.Red;
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVolver.Location = new System.Drawing.Point(390, 368);
+            this.btnVolver.Location = new System.Drawing.Point(243, 376);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(108, 62);
             this.btnVolver.TabIndex = 47;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = false;
-            // 
-            // btnVolverInicio
-            // 
-            this.btnVolverInicio.BackColor = System.Drawing.Color.Red;
-            this.btnVolverInicio.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnVolverInicio.Location = new System.Drawing.Point(562, 376);
-            this.btnVolverInicio.Name = "btnVolverInicio";
-            this.btnVolverInicio.Size = new System.Drawing.Size(146, 46);
-            this.btnVolverInicio.TabIndex = 48;
-            this.btnVolverInicio.Text = "Volver inicio";
-            this.btnVolverInicio.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // groupBoxInsertar
             // 
@@ -195,6 +186,14 @@
             this.groupBoxInsertar.TabIndex = 49;
             this.groupBoxInsertar.TabStop = false;
             // 
+            // lblImporteIns
+            // 
+            this.lblImporteIns.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblImporteIns.Location = new System.Drawing.Point(143, 122);
+            this.lblImporteIns.Name = "lblImporteIns";
+            this.lblImporteIns.Size = new System.Drawing.Size(163, 23);
+            this.lblImporteIns.TabIndex = 25;
+            // 
             // btnInsertar
             // 
             this.btnInsertar.Location = new System.Drawing.Point(82, 222);
@@ -203,6 +202,7 @@
             this.btnInsertar.TabIndex = 24;
             this.btnInsertar.Text = "Insertar";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // lblIdReservaIns
             // 
@@ -256,25 +256,28 @@
             this.lblTituloIns.TabIndex = 2;
             this.lblTituloIns.Text = "Formulario para insertar pago";
             // 
-            // lblImporteIns
+            // btnLimpiar
             // 
-            this.lblImporteIns.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblImporteIns.Location = new System.Drawing.Point(143, 122);
-            this.lblImporteIns.Name = "lblImporteIns";
-            this.lblImporteIns.Size = new System.Drawing.Size(163, 23);
-            this.lblImporteIns.TabIndex = 25;
+            this.btnLimpiar.Location = new System.Drawing.Point(390, 376);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 62);
+            this.btnLimpiar.TabIndex = 50;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // AgregarModificarPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBoxInsertar);
-            this.Controls.Add(this.btnVolverInicio);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBoxModificar);
             this.Name = "AgregarModificarPago";
             this.Text = "AgregarModificarPago";
+            this.Load += new System.EventHandler(this.AgregarModificarPago_Load);
             this.groupBoxModificar.ResumeLayout(false);
             this.groupBoxModificar.PerformLayout();
             this.groupBoxInsertar.ResumeLayout(false);
@@ -290,14 +293,13 @@
         private System.Windows.Forms.Label lblReservaMod;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label lblIdPagoMod;
         private System.Windows.Forms.TextBox txtImporteMod;
         private System.Windows.Forms.TextBox txtMetodoMod;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTituloModificar;
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Button btnVolverInicio;
         private System.Windows.Forms.GroupBox groupBoxInsertar;
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Label lblIdReservaIns;
@@ -307,5 +309,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTituloIns;
         private System.Windows.Forms.Label lblImporteIns;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
